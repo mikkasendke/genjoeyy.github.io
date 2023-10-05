@@ -48,7 +48,6 @@ try {
             </div>
             `
             appendMessage(chatContainerSelector, chatMessageHTML)
-            gitCommit('add message')
 
         } else if (trusted_users.includes(userstate.username)) {
             let ping_pattern = /@?fu?ckfomo\s+(check\s*)+/i
@@ -75,12 +74,6 @@ function isValidChannel(channel) {
     return false
 }
 
-function gitCommit(message) {
-    var output = execSync('git add -A')
-    output = execSync('git commit -m ' + message)
-    output = execSync('git push -u origin main')
-}
-
 function appendMessage(chatContainerSelector, chatMessageHTML) {
     try {
         const htmlFilePath = path.join(__dirname, 'index.html')
@@ -89,7 +82,6 @@ function appendMessage(chatContainerSelector, chatMessageHTML) {
         const chatContainer = $(chatContainerSelector)
         chatContainer.append(chatMessageHTML)
         fs.writeFileSync(htmlFilePath, $.html(), 'utf8')
-        gitCommit('add message')
     } catch (err) {
         throw err
     }
@@ -173,7 +165,6 @@ app.delete('/api/delete', (req, res) => {
             if (lastMessage.length > 0 && lastMessage.find(".chat-text").length > 0) {
                 lastMessage.remove();
                 fs.writeFileSync(filePath, $.html(), 'utf8');
-                gitCommit('deleted message')
                 res.status(200).json({ message: 'Latest message deleted successfully' })
             } else {
                 res.status(404).json({ error: 'No messages found in the chat container' })
