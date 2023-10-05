@@ -11,8 +11,8 @@ const path = require('path')
 const tmi = require('tmi.js')
 const config = require('./op.json')
 
-app.use(express.static('public'))
-app.use(express.static('files'))
+app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/files"))
 
 const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
 const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.crt'), 'utf8');
