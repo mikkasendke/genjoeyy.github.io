@@ -1,5 +1,3 @@
-/*
 setInterval(function () {
   location.reload()
-}, 15000)
-*/
+}, 30000)
