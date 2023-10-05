@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express')
 const app = new express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
@@ -10,7 +10,7 @@ const moment = require('moment')
 
 const path = require('path')
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname)))
 app.use(express.json())
 
 function isValidChannel(channel) {
@@ -21,6 +21,12 @@ function isValidChannel(channel) {
     return false
 }
 
+function gitCommit(message) {
+    require('child_process').execFile('git', ['add', '-A'])
+    require('child_process').execFile('git', ['commit', '-m', message])
+    require('child_process').execFile('git', ['push', '-u', 'origin', 'main'])
+}
+
 function appendMessage(chatContainerSelector, chatMessageHTML) {
     try {
         const htmlFilePath = './index.html'
@@ -29,6 +35,7 @@ function appendMessage(chatContainerSelector, chatMessageHTML) {
         const chatContainer = $(chatContainerSelector)
         chatContainer.append(chatMessageHTML)
         fs.writeFileSync(htmlFilePath, $.html(), 'utf8')
+        gitCommit('added message')
     } catch (err) {
         throw err
     }
@@ -64,7 +71,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/send', express.json(), (req, res) => {
-    let { channel, time, username, message } = req.body;
+    let { channel, time, username, message } = req.body
     console.log(channel)
     console.log(time)
     console.log(username)
@@ -94,7 +101,7 @@ app.post('/api/send', express.json(), (req, res) => {
         res.status(500).json({ error: 'Internal server error' })
         return
     }
-    res.status(200).json({ message: 'Message added successfully' });
+    res.status(200).json({ message: 'Message added successfully' })
 });
 
 app.delete('/api/delete', (req, res) => {
@@ -115,20 +122,21 @@ app.delete('/api/delete', (req, res) => {
             if (lastMessage.length > 0 && lastMessage.find(".chat-text").length > 0) {
                 lastMessage.remove();
                 fs.writeFileSync(filePath, $.html(), 'utf8');
-                res.status(200).json({ message: 'Latest message deleted successfully' });
+                gitCommit('deleted message')
+                res.status(200).json({ message: 'Latest message deleted successfully' })
             } else {
-                res.status(404).json({ error: 'No messages found in the chat container' });
+                res.status(404).json({ error: 'No messages found in the chat container' })
             }
         } else {
-            res.status(404).json({ error: 'Chat container not found' });
+            res.status(404).json({ error: 'Chat container not found' })
         }
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Internal server error' })
     }
 })
 
 
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+    console.log(`Server running on port ${port}`)
+})
