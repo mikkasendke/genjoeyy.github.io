@@ -1,14 +1,18 @@
+const https = require('https')
 const express = require('express')
-const app = new express()
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
+const app = express()
 const port = process.env.PORT || 6969
 const fs = require('fs')
 const cheerio = require('cheerio')
 const cron = require('node-cron')
 const moment = require('moment')
-
 const path = require('path')
+
+const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
+const certificate = fs.readFileSync(path.join(_dirname, 'sslcert', 'certificate.crt'), 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+const httpsServer = https.createServer(credentials, app);
 
 app.use(express.static(path.join(__dirname)))
 app.use(express.json())
@@ -137,6 +141,6 @@ app.delete('/api/delete', (req, res) => {
 
 
 
-app.listen(port, () => {
+httpsServer.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
