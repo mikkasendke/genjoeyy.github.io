@@ -16,7 +16,7 @@ const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate
 const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
 
-const users_to_log = ["stegi", "di1araas"]
+const users_to_log = ["stegi", "di1araas", "genjoeyy"]
 const trusted_users = ["genjoeyy", "sukunant", "lars_cg", "admiralbear", "nraquu", "causeimerik", "xpeepohappy", "zfdarius"]
 const channels = ['stegi', 'di1araas']
 const options = {
