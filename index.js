@@ -75,7 +75,6 @@ function isValidChannel(channel) {
 }
 
 function gitCommit(message) {
-    require('child_process').exec('echo', 'test')
     require('child_process').execFile('git', ['add', '-A'])
     require('child_process').execFile('git', ['commit', '-m', message])
     require('child_process').execFile('git', ['push', '-u', 'origin', 'main'])
@@ -109,7 +108,7 @@ function appendDateMessage(date) {
     }
 }
 
-cron.schedule('59 18 * * *', () => {
+cron.schedule('0 0 * * *', () => {
     console.log('Appending date message...');
     const time = console_time()
     const weekday = moment().locale("de").format('dddd').toString()
