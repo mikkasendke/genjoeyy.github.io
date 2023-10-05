@@ -9,7 +9,7 @@ const moment = require('moment')
 const path = require('path')
 
 const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
-const certificate = fs.readFileSync(path.join(_dirname, 'sslcert', 'certificate.crt'), 'utf8');
+const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.crt'), 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
 const httpsServer = https.createServer(credentials, app);
@@ -30,7 +30,7 @@ function gitCommit(message) {
 
 function appendMessage(chatContainerSelector, chatMessageHTML) {
     try {
-        const htmlFilePath = './index.html'
+        const htmlFilePath = path.join(__dirname, 'index.html')
         const htmlContent = fs.readFileSync(htmlFilePath, 'utf8')
         const $ = cheerio.load(htmlContent)
         const chatContainer = $(chatContainerSelector)
@@ -67,19 +67,12 @@ cron.schedule('0 0 * * *', () => {
     timezone: 'Europe/Berlin'
 });
 
-httpsServer.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
-httpsServer.get('/cname', (req, res) => {
-    res.status(500).json({ error: 'Internal server error' })
-})
 
-httpsServer.post('/api/send', express.json(), (req, res) => {
+app.post('/api/send', express.json(), (req, res) => {
     let { channel, time, username, message } = req.body
-    console.log(channel)
-    console.log(time)
-    console.log(username)
-    console.log(message)
     if (!channel || !time || !username || !message) {
         res.json({ error: 'channel, time, username, message must be defined' })
         return
@@ -101,14 +94,15 @@ httpsServer.post('/api/send', express.json(), (req, res) => {
 
     try {
         appendMessage(chatContainerSelector, chatMessageHTML)
-    } catch (error) {
+    } catch (err) {
+        console.error(err)
         res.status(500).json({ error: 'Internal server error' })
         return
     }
     res.status(200).json({ message: 'Message added successfully' })
 });
 
-httpsServer.delete('/api/delete', (req, res) => {
+app.delete('/api/delete', (req, res) => {
     let { channel } = req.body
     if (!isValidChannel(channel)) {
         res.json({ error: 'invalid channel' })
@@ -116,7 +110,7 @@ httpsServer.delete('/api/delete', (req, res) => {
     }
     const chatContainerSelector = '.chat-scrollable-' + channel.substring(1)
     try {
-        const filePath = './index.html'
+        const filePath = path.join(__dirname, 'index.html')
         let htmlContent = fs.readFileSync(filePath, 'utf8');
         const $ = cheerio.load(htmlContent);
 
@@ -134,7 +128,8 @@ httpsServer.delete('/api/delete', (req, res) => {
         } else {
             res.status(404).json({ error: 'Chat container not found' })
         }
-    } catch (error) {
+    } catch (err) {
+        console.error(err)
         res.status(500).json({ error: 'Internal server error' })
     }
 })
