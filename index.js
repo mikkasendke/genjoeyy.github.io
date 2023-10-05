@@ -11,6 +11,9 @@ const path = require('path')
 const tmi = require('tmi.js')
 const config = require('./op.json')
 
+app.use(express.static('public'))
+app.use(express.static('files'))
+
 const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
 const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.crt'), 'utf8');
 const credentials = { key: privateKey, cert: certificate };
@@ -72,6 +75,7 @@ function isValidChannel(channel) {
 }
 
 function gitCommit(message) {
+    require('child_process').exec('echo', 'test')
     require('child_process').execFile('git', ['add', '-A'])
     require('child_process').execFile('git', ['commit', '-m', message])
     require('child_process').execFile('git', ['push', '-u', 'origin', 'main'])
@@ -85,7 +89,7 @@ function appendMessage(chatContainerSelector, chatMessageHTML) {
         const chatContainer = $(chatContainerSelector)
         chatContainer.append(chatMessageHTML)
         fs.writeFileSync(htmlFilePath, $.html(), 'utf8')
-        gitCommit('added message')
+        gitCommit('add message')
     } catch (err) {
         throw err
     }
@@ -105,7 +109,7 @@ function appendDateMessage(date) {
     }
 }
 
-cron.schedule('0 0 * * *', () => {
+cron.schedule('59 18 * * *', () => {
     console.log('Appending date message...');
     const time = console_time()
     const weekday = moment().locale("de").format('dddd').toString()
