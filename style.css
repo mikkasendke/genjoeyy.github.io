@@ -61,6 +61,11 @@ body {
     word-break: break-all;
 }
 
+.chat-message img {
+    max-width: 100%;
+    vertical-align:-webkit-baseline-middle;
+}
+
 .chat-username {
     font-weight: bold;
     padding-right: 5px;
