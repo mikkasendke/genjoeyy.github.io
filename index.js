@@ -70,6 +70,9 @@ cron.schedule('0 0 * * *', () => {
 httpsServer.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
+httpsServer.get('/cname', (req, res) => {
+    res.sendFile(path.join(__dirname, 'CNAME'))
+})
 
 httpsServer.post('/api/send', express.json(), (req, res) => {
     let { channel, time, username, message } = req.body
