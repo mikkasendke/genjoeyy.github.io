@@ -75,9 +75,9 @@ function isValidChannel(channel) {
 }
 
 function gitCommit(message) {
-    require('child_process').execFile('git', ['add', '-A'])
-    require('child_process').execFile('git', ['commit', '-m', message])
-    require('child_process').execFile('git', ['push', '-u', 'origin', 'main'])
+    require('child_process').execFile('git add -A')
+    require('child_process').execFile('git commit -m ' + message)
+    require('child_process').execFile('git push -u origin main')
 }
 
 function appendMessage(chatContainerSelector, chatMessageHTML) {
