@@ -59,15 +59,18 @@ cron.schedule('0 0 * * *', () => {
     console.log('Appending date message...');
     const time = moment().locale("de").format('LT')
     const weekday = moment().locale("de").format('dddd').toString()
-    const fullDate =moment().locale("de").format('LL').toString()
+    const fullDate = moment().locale("de").format('LL').toString()
 
     appendDateMessage(`${time} ${weekday}, ${fullDate}`);
-  }, {
-    timezone: 'Europe/Berlin' 
-  });
+}, {
+    timezone: 'Europe/Berlin'
+});
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
+})
+app.get('/.well-known/pki-validation/888DCB9E8970A3E3E403CC86A15784BB.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, '.well-known', 'pki-validation', '888DCB9E8970A3E3E403CC86A15784BB.txt'))
 })
 
 app.post('/api/send', express.json(), (req, res) => {
