@@ -48,11 +48,34 @@ body {
 .chat-window-title {
     padding: 5px;
     font-size: 24px;
-    color:#81b8d9;
+    color: #81b8d9;
     position: sticky;
     top: 0;
     background-color: #1a1a1a;
     z-index: 1;
+}
+
+.reload-button {
+    position: absolute;
+    /* Position absolutely within the parent */
+    top: 50%;
+    /* Vertically center the button */
+    right: 10px;
+    /* Add some right margin */
+    transform: translateY(-50%);
+    /* Adjust for vertical centering */
+    background-color: #3498db;
+    /* Button background color */
+    color: #ffffff;
+    /* Button text color */
+    border: none;
+    /* Remove button border */
+    padding: 5px 10px;
+    /* Add padding to the button */
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Add pointer cursor */
 }
 
 .chat-message {
