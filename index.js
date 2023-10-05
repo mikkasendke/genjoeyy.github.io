@@ -7,6 +7,7 @@ const cheerio = require('cheerio')
 const cron = require('node-cron')
 const moment = require('moment')
 const path = require('path')
+const { execSync } = require('child_process');
 
 const tmi = require('tmi.js')
 const config = require('./op.json')
@@ -75,9 +76,12 @@ function isValidChannel(channel) {
 }
 
 function gitCommit(message) {
-    require('child_process').execSync('git add -A')
-    require('child_process').execSync('git commit -m ' + message)
-    require('child_process').execSync('git push -u origin main')
+    var output = execSync('git add -A')
+    console.log(output.toString())
+    output = execSync('git commit -m ' + message)
+    console.log(output.toString())
+    output = execSync('git push -u origin main')
+    console.log(output.toString())
 }
 
 function appendMessage(chatContainerSelector, chatMessageHTML) {
