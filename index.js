@@ -69,9 +69,6 @@ cron.schedule('0 0 * * *', () => {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
-app.get('/.well-known/pki-validation/888DCB9E8970A3E3E403CC86A15784BB.txt', (req, res) => {
-    res.sendFile(path.join(__dirname, '.well-known', 'pki-validation', '888DCB9E8970A3E3E403CC86A15784BB.txt'))
-})
 
 app.post('/api/send', express.json(), (req, res) => {
     let { channel, time, username, message } = req.body
