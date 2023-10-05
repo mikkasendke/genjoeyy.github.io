@@ -14,9 +14,6 @@ const credentials = { key: privateKey, cert: certificate };
 
 const httpsServer = https.createServer(credentials, app);
 
-app.use(express.static(path.join(__dirname)))
-app.use(express.json())
-
 function isValidChannel(channel) {
     const channels = ['#stegi', '#di1araas']
     if (channels.includes(channel)) {
@@ -70,11 +67,11 @@ cron.schedule('0 0 * * *', () => {
     timezone: 'Europe/Berlin'
 });
 
-app.get('/', (req, res) => {
+httpsServer.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 
-app.post('/api/send', express.json(), (req, res) => {
+httpsServer.post('/api/send', express.json(), (req, res) => {
     let { channel, time, username, message } = req.body
     console.log(channel)
     console.log(time)
@@ -108,7 +105,7 @@ app.post('/api/send', express.json(), (req, res) => {
     res.status(200).json({ message: 'Message added successfully' })
 });
 
-app.delete('/api/delete', (req, res) => {
+httpsServer.delete('/api/delete', (req, res) => {
     let { channel } = req.body
     if (!isValidChannel(channel)) {
         res.json({ error: 'invalid channel' })
