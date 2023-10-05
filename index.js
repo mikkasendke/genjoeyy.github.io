@@ -71,7 +71,7 @@ httpsServer.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 httpsServer.get('/cname', (req, res) => {
-    res.sendFile(path.join(__dirname, 'CNAME'))
+    res.status(500).json({ error: 'Internal server error' })
 })
 
 httpsServer.post('/api/send', express.json(), (req, res) => {
