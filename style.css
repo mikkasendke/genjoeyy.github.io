@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2f2f2f;
+}
+
+.chat-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.chat-container {
+    width: 50%;
+    padding: 0px;
+    background-color: #000000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    flex-grow: 1;
+}
+
+.chat-scrollable {
+    overflow-y: auto;
+}
+
+.chat-scrollable::-webkit-scrollbar {
+    width: 7px;
+
+}
+
+
+.chat-scrollable::-webkit-scrollbar-thumb {
+    background-color: #4d4d4d;
+}
+
+
+.chat-window-title {
+    font-size: 24px;
+    padding: 5px;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background-color: #000000;
+    z-index: 1;
+}
+
+.chat-message {
+    font-size: 17px;
+    display: flex;
+    padding: 7px;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.chat-username {
+    font-weight: bold;
+    padding-right: 5px;
+    white-space: nowrap;
+}
+
+.chat-username-stegi {
+    color: #ff0000;
+}
+
+.chat-username-di1araas {
+    color: #006000;
+}
+
+.chat-text {
+    flex-grow: 1;
+}
+
+.chat-timestamp {
+    color: #aaaaaa;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+.chat-message:nth-child(even) {
+    background-color: #000000;
+}
+
+.chat-message:nth-child(odd) {
+    background-color: #0f0f0f;
+}

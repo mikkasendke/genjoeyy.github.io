@@ -1,0 +1,26 @@
+{
+  "name": "genjoeyy.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genjoeyy/genjoeyy.github.io.git"
+  },
+  "author": "GenJoeyy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/genjoeyy/genjoeyy.github.io/issues"
+  },
+  "homepage": "https://github.com/genjoeyy/genjoeyy.github.io#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "node-cron": "^3.0.2",
+    "socket.io": "^4.7.2"
+  }
+}
