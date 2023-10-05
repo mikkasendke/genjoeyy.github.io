@@ -77,11 +77,8 @@ function isValidChannel(channel) {
 
 function gitCommit(message) {
     var output = execSync('git add -A')
-    console.log(output.toString())
     output = execSync('git commit -m ' + message)
-    console.log(output.toString())
     output = execSync('git push -u origin main')
-    console.log(output.toString())
 }
 
 function appendMessage(chatContainerSelector, chatMessageHTML) {
