@@ -24,7 +24,7 @@ body {
     max-height: 100%;
     flex-grow: 1;
 }
-    
+
 .chat-scrollable {
     overflow-y: auto;
 }
@@ -46,12 +46,12 @@ body {
 }
 
 .chat-window-title {
-    font-size: 24px;
     padding: 5px;
-    font-weight: bold;
+    font-size: 24px;
+    color:#81b8d9;
     position: sticky;
     top: 0;
-    background-color: #000000;
+    background-color: #1a1a1a;
     z-index: 1;
 }
 
