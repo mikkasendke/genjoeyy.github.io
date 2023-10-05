@@ -107,7 +107,7 @@ function appendDateMessage(date) {
     }
 }
 
-cron.schedule('38 18 * * *', () => {
+cron.schedule('40 18 * * *', () => {
     console.log('Appending date message...');
     const time = console_time()
     const weekday = moment().locale("de").format('dddd').toString()
