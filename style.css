@@ -31,7 +31,6 @@ body {
 
 .chat-scrollable::-webkit-scrollbar {
     width: 7px;
-
 }
 
 .chat-scrollable::-webkit-scrollbar-thumb {
@@ -42,6 +41,9 @@ body {
     background-color: #333;
 }
 
+.chat-scrollable::-webkit-scrollbar-track {
+    background-color: transparent;
+}
 
 .chat-window-title {
     font-size: 24px;
@@ -63,7 +65,7 @@ body {
 
 .chat-message img {
     max-width: 100%;
-    vertical-align:-webkit-baseline-middle;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .chat-username {
