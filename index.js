@@ -8,11 +8,62 @@ const cron = require('node-cron')
 const moment = require('moment')
 const path = require('path')
 
+const tmi = require('tmi.js')
+const config = require('./op.json')
+
 const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
 const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.crt'), 'utf8');
 const credentials = { key: privateKey, cert: certificate };
-
 const httpsServer = https.createServer(credentials, app);
+
+const users_to_log = ["stegi", "di1araas"]
+const trusted_users = ["genjoeyy", "sukunant", "lars_cg", "admiralbear", "nraquu", "causeimerik", "xpeepohappy", "zfdarius"]
+const channels = ['stegi', 'di1araas']
+const options = {
+    identity: {
+        username: config['bot_username'], password: config['bot_token'],
+    }, channels: channels,
+}
+const client = new tmi.Client(options)
+
+try {
+    client.on("message", (channel, userstate, message) => {
+        let log_message = `${console_time()} ${channel} @${userstate.username}: ${message}`
+        if (users_to_log.includes(userstate.username)) {
+            console.log(log_message)
+
+            const time = console_time();
+            const username = userstate.username
+            channel = channel.substring(1)
+            const chatContainerSelector = '.chat-scrollable-' + channel
+            const chatMessageHTML = `
+            <div class="chat-message">
+                <span class="chat-timestamp">${time}</span>
+                <span class="chat-username chat-username-${username}">${username}:</span>
+                <span class="chat-text">${message}</span>
+            </div>
+            `
+            appendMessage(chatContainerSelector, chatMessageHTML)
+            gitCommit('add message')
+
+        } else if (trusted_users.includes(userstate.username)) {
+            let ping_pattern = /@?fu?ckfomo\s+(check\s*)+/i
+            if (ping_pattern.test(message)) {
+                client.say(channel, "check check komme mitm jetpack")
+            }
+        }
+    })
+} catch (err) {
+    console.error(err)
+}
+
+
+
+
+function console_time() {
+    return moment().locale("de").format('LT')
+}
+
 
 function isValidChannel(channel) {
     const channels = ['#stegi', '#di1araas']
@@ -58,7 +109,7 @@ function appendDateMessage(date) {
 
 cron.schedule('0 0 * * *', () => {
     console.log('Appending date message...');
-    const time = moment().locale("de").format('LT')
+    const time = console_time()
     const weekday = moment().locale("de").format('dddd').toString()
     const fullDate = moment().locale("de").format('LL').toString()
 
@@ -136,6 +187,12 @@ app.delete('/api/delete', (req, res) => {
 
 
 
+
+
+client.on("connected", () => {
+    console.log(`-- tmi client connected to ${channels} `)
+})
 httpsServer.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
+client.connect()
