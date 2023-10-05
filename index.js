@@ -58,8 +58,6 @@ try {
 }
 
 
-
-
 function console_time() {
     return moment().locale("de").format('LT')
 }
@@ -184,8 +182,6 @@ app.delete('/api/delete', (req, res) => {
         res.status(500).json({ error: 'Internal server error' })
     }
 })
-
-
 
 
 
