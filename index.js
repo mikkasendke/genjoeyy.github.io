@@ -16,7 +16,7 @@ const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate
 const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
 
-const users_to_log = ["stegi", "di1araas", "genjoeyy"]
+const users_to_log = ["stegi", "di1araas"]
 const trusted_users = ["genjoeyy", "sukunant", "lars_cg", "admiralbear", "nraquu", "causeimerik", "xpeepohappy", "zfdarius"]
 const channels = ['stegi', 'di1araas']
 const options = {
@@ -107,7 +107,7 @@ function appendDateMessage(date) {
     }
 }
 
-cron.schedule('0 0 * * *', () => {
+cron.schedule('38 18 * * *', () => {
     console.log('Appending date message...');
     const time = console_time()
     const weekday = moment().locale("de").format('dddd').toString()
