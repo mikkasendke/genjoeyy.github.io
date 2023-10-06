@@ -7,7 +7,7 @@ const cheerio = require('cheerio')
 const cron = require('node-cron')
 const moment = require('moment')
 const path = require('path')
-const socketIO = require('socket.io')
+const { Server } = require("socket.io");
 
 const tmi = require('tmi.js')
 const config = require('./op.json')
@@ -26,7 +26,8 @@ const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate
 const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
 
-const io = socketIO(httpsServer)
+//const io = socketIO(httpsServer)
+const io = new Server(server);
 
 let viewerCount = 0;
 io.on('connection', (socket) => {
