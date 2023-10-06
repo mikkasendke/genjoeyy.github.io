@@ -1,11 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    background-color: #2f2f2f;
 }
 
 .chat-wrapper {
