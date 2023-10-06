@@ -4,7 +4,7 @@ let isReloadEnabled = true
 function startReloadInterval() {
   reloadInterval = setInterval(function () {
       location.reload()
-  }, 30000)
+  }, 60000)
 }
 
 function stopReloadInterval() {
