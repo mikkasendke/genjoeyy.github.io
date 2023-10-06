@@ -26,10 +26,12 @@ let viewerCount = 0;
 io.on('connection', (socket) => {
     viewerCount++
     io.emit('viewerCount', viewerCount);
+    console.log('connected')
 
     socket.on('disconnect', () => {
         viewerCount--
         io.emit('viewerCount', viewerCount);
+        console.log('disconnected')
     });
 });
 
