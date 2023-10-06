@@ -57,7 +57,6 @@ body {
 
 .reload-button {
     position: absolute;
-    /* Position absolutely within the parent */
     top: 50%;
     /* Vertically center the button */
     right: 10px;
