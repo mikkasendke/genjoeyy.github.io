@@ -142,7 +142,7 @@ app.get('/style.css', (req, res) => {
 })
 
 app.get('/prime', (req, res) => {
-    res.redirect('https://clips.twitch.tv/NeighborlyInventiveCattleOSsloth-5ufagaYfR3U5pVzC')
+    res.sendFile(path.join(__dirname,'prime.html'))
 })
 
 app.post('/api/send', express.json(), (req, res) => {
