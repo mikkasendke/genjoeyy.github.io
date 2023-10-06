@@ -63,10 +63,10 @@ body {
 }
 
 .button {
-    background-color: #3498db; 
+    background-color: #26C281; 
     color: #ffffff; 
     border: none; 
-    padding: 5px 10px;
+    padding: 7px 14px;
     border-radius: 5px; 
     cursor: pointer
 }
