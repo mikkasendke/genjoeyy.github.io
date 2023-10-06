@@ -55,26 +55,25 @@ body {
     z-index: 1;
 }
 
-.reload-button {
+.addon {
     position: absolute;
     top: 50%;
-    /* Vertically center the button */
     right: 10px;
-    /* Add some right margin */
     transform: translateY(-50%);
-    /* Adjust for vertical centering */
-    background-color: #3498db;
-    /* Button background color */
-    color: #ffffff;
-    /* Button text color */
-    border: none;
-    /* Remove button border */
+}
+
+.reload-button {
+    background-color: #3498db; 
+    color: #ffffff; 
+    border: none; 
     padding: 5px 10px;
-    /* Add padding to the button */
-    border-radius: 5px;
-    /* Rounded corners */
-    cursor: pointer;
-    /* Add pointer cursor */
+    border-radius: 5px; 
+    cursor: pointer
+}
+
+.viewer-count {
+    font-size: 16px;
+    align-self: baseline;
 }
 
 .chat-message {
