@@ -62,7 +62,7 @@ body {
     transform: translateY(-50%);
 }
 
-.reload-button {
+.button {
     background-color: #3498db; 
     color: #ffffff; 
     border: none; 
