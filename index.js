@@ -140,6 +140,9 @@ app.get('/script.js', (req, res) => {
 app.get('/style.css', (req, res) => {
     res.sendFile(path.join(__dirname, 'style.css'))
 })
+app.get('/index.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.js'))
+})
 
 app.get('/prime', (req, res) => {
     res.sendFile(path.join(__dirname,'prime.html'))
