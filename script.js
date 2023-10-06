@@ -13,10 +13,10 @@ function stopReloadInterval() {
 function toggleReload() {
   if (isReloadEnabled) {
     stopReloadInterval()
-    document.getElementById("reloadButton").textContent = "Auto Reload: OFF"
+    document.getElementById("reloadButton").textContent = "Auto Reload OFF"
   } else {
     startReloadInterval()
-    document.getElementById("reloadButton").textContent = "Auto Reload: ON"
+    document.getElementById("reloadButton").textContent = "Auto Reload ON"
   }
   isReloadEnabled = !isReloadEnabled;
 }
