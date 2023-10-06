@@ -27,7 +27,7 @@ const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
 
 //const io = socketIO(httpsServer)
-const io = new Server(server);
+const io = new Server(httpsServer);
 
 let viewerCount = 0;
 io.on('connection', (socket) => {
