@@ -12,15 +12,20 @@ function stopReloadInterval() {
 }
 
 function toggleReload() {
+  const reloadButton = document.getElementById("reload-button");
+
   if (isReloadEnabled) {
-    stopReloadInterval()
-    console.log('Auto Reload disabled')
-    document.getElementById("reload-button").textContent = "Auto Reload: OFF"
+    stopReloadInterval();
+    console.log('Auto Reload disabled');
+    reloadButton.textContent = "Auto Reload OFF";
+    reloadButton.style.backgroundColor = "#9d2933"; 
   } else {
-    startReloadInterval()
-    console.log('Auto Reload enabled')
-    document.getElementById("reload-button").textContent = "Auto Reload: ON"
+    startReloadInterval();
+    console.log('Auto Reload enabled');
+    reloadButton.textContent = "Auto Reload ON";
+    reloadButton.style.backgroundColor = "#3498db"; 
   }
+  
   isReloadEnabled = !isReloadEnabled;
 }
 
