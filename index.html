@@ -9,7 +9,7 @@
 <body>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        const socket = io('https://localhost:6969');
 
         socket.on('connect', () => {
             console.log('Connected to the server');

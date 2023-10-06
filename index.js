@@ -133,10 +133,10 @@ app.get('/script.js', (req, res) => {
 })
 app.get('/style.css', (req, res) => {
     res.sendFile(path.join(__dirname, 'style.css'))
-})
+})/*
 app.get('/socket.io/socket.io.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'node_modules', 'socket.io', 'client-dist', 'socket.io.js'))
-})
+})*/
 
 app.post('/api/send', express.json(), (req, res) => {
     let { channel, time, username, message } = req.body
