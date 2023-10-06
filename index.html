@@ -12,7 +12,7 @@
 <body>
     <script src="./socket.io/socket.io.js"></script>
     <script>
-        const socket = io('localhost:6969');
+        const socket = io();
 
         socket.on('connect', () => {
             console.log('Connected to the server');
