@@ -7,6 +7,7 @@ const cron = require('node-cron')
 const moment = require('moment')
 const path = require('path')
 const socketIO = require("socket.io");
+const { Server } = require('socket.io')
 
 const app = express()
 const port = process.env.PORT || 6969
@@ -26,8 +27,8 @@ const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
 */
 
-//const io = socketIO(httpsServer)
-const io = socketIO.listen(httpServer)
+const io = socketIO(httpServer)
+//const io = new Server(httpServer)
 
 let viewerCount = 0;
 io.on('connection', (socket) => {
