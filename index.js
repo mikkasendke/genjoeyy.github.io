@@ -10,6 +10,7 @@ const socketIO = require("socket.io");
 
 const app = express()
 const port = process.env.PORT || 6969
+const httpServer = http.createServer(app)
 
 const tmi = require('tmi.js')
 const config = require('./op.json')
@@ -25,7 +26,7 @@ const httpsServer = https.createServer(credentials, app);
 */
 
 //const io = socketIO(httpsServer)
-const io = socketIO.listen(httpsServer)
+const io = socketIO.listen(httpServer)
 
 let viewerCount = 0;
 io.on('connection', (socket) => {
@@ -211,7 +212,7 @@ app.delete('/api/delete', (req, res) => {
 client.on("connected", () => {
     console.log(`-- tmi client connected to ${channels} `)
 })
-httpsServer.listen(port, () => {
+httpServer.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
 client.connect()
