@@ -3,9 +3,10 @@ let isReloadEnabled = true
 
 function startReloadInterval() {
   reloadInterval = setInterval(function () {
-    location.reload()
+      location.reload()
   }, 30000)
 }
+
 function stopReloadInterval() {
   clearInterval(reloadInterval)
 }
@@ -13,10 +14,12 @@ function stopReloadInterval() {
 function toggleReload() {
   if (isReloadEnabled) {
     stopReloadInterval()
-    document.getElementById("reloadButton").textContent = "Auto Reload OFF"
+    console.log('Auto Reload disabled')
+    document.getElementById("reload-button").textContent = "Auto Reload: OFF"
   } else {
     startReloadInterval()
-    document.getElementById("reloadButton").textContent = "Auto Reload ON"
+    console.log('Auto Reload enabled')
+    document.getElementById("reload-button").textContent = "Auto Reload: ON"
   }
   isReloadEnabled = !isReloadEnabled;
 }
