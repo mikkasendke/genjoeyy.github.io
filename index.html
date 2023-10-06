@@ -10,9 +10,9 @@
 </head>
 
 <body>
-    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        const socket = io('');
 
         socket.on('connect', () => {
             console.log('Connected to the server');
