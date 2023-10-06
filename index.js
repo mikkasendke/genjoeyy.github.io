@@ -128,6 +128,12 @@ cron.schedule('0 0 * * *', () => {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
+app.get('/script.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'script.js'))
+})
+app.get('/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'style.css'))
+})
 app.get('/socket.io/socket.io.js', (req, res) => {
     res.sendFile(path.join('socket.io'))
 })
