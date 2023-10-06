@@ -28,7 +28,7 @@ const httpsServer = https.createServer(credentials, app);
 */
 
 //const io = socketIO(httpServer)
-const io = new Server(httpServer)
+const io = new Server(httpServer, { cors: { origin: "*" }, allowEIO3: true });
 
 let viewerCount = 0;
 io.on('connection', (socket) => {
