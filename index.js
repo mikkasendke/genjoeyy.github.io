@@ -129,7 +129,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 app.get('/socket.io/socket.io.js', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
+    res.sendFile(path.join('socket.io'))
 })
 
 app.post('/api/send', express.json(), (req, res) => {
