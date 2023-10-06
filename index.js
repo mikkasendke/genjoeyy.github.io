@@ -20,6 +20,19 @@ const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate
 const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
 
+const io = socketIO(httpsServer)
+
+let viewerCount = 0;
+io.on('connection', (socket) => {
+    viewerCount++
+    io.emit('viewerCount', viewerCount);
+
+    socket.on('disconnect', () => {
+        viewerCount--
+        io.emit('viewerCount', viewerCount);
+    });
+});
+
 const users_to_log = ["stegi", "di1araas"]
 const trusted_users = ["genjoeyy", "sukunant", "lars_cg", "admiralbear", "nraquu", "causeimerik", "xpeepohappy", "zfdarius"]
 const channels = ['stegi', 'di1araas']
