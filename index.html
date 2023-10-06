@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <!--script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></!--script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
         const socket = io('https://localhost:6969');
 
@@ -29,7 +29,7 @@
         socket.on('viewerCount', (count) => {
             document.getElementById('viewer-count').textContent = getCountText(count)
         });
-    </script -->
+    </script>
 
     <div class="chat-wrapper">
         <div class="chat-container">
