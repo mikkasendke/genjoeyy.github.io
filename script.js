@@ -17,15 +17,15 @@ function toggleReload() {
   if (isReloadEnabled) {
     stopReloadInterval();
     console.log('Auto Reload disabled');
-    reloadButton.textContent = "Auto Reload OFF";
+    reloadButton.innerHTML = "Auto Reload <b>OFF</b>";
     reloadButton.style.backgroundColor = "#9d2933"; 
   } else {
     startReloadInterval();
     console.log('Auto Reload enabled');
-    reloadButton.textContent = "Auto Reload ON";
-    reloadButton.style.backgroundColor = "#3498db"; 
+    reloadButton.innerHTML = "Auto Reload <b>ON</b>";
+    reloadButton.style.backgroundColor = "#26C281"; 
   }
-  
+
   isReloadEnabled = !isReloadEnabled;
 }
 
