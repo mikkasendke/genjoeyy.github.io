@@ -1,3 +1,4 @@
+const http = require('http')
 const https = require('https')
 const express = require('express')
 const app = express()
@@ -14,17 +15,13 @@ const config = require('./op.json')
 
 app.use(express.static(__dirname + "/public"))
 app.use(express.static(__dirname + "/files"))
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-  })
 
+/*
 const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
 const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.crt'), 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
+*/
 
 //const io = socketIO(httpsServer)
 const io = socketIO.listen(httpsServer)
