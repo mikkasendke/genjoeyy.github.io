@@ -1,14 +1,15 @@
 const http = require('http')
 const https = require('https')
 const express = require('express')
-const app = express()
-const port = process.env.PORT || 6969
 const fs = require('fs')
 const cheerio = require('cheerio')
 const cron = require('node-cron')
 const moment = require('moment')
 const path = require('path')
 const socketIO = require("socket.io");
+
+const app = express()
+const port = process.env.PORT || 6969
 
 const tmi = require('tmi.js')
 const config = require('./op.json')
