@@ -26,12 +26,10 @@ let viewerCount = 0;
 io.on('connection', (socket) => {
     viewerCount++
     io.emit('viewerCount', viewerCount);
-    console.log('connected')
 
     socket.on('disconnect', () => {
         viewerCount--
         io.emit('viewerCount', viewerCount);
-        console.log('disconnected')
     });
 });
 
@@ -128,6 +126,9 @@ cron.schedule('0 0 * * *', () => {
 });
 
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'))
+})
+app.get('/socket.io/socket.io.js', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
 })
 
