@@ -15,8 +15,9 @@ const httpServer = http.createServer(app)
 const tmi = require('tmi.js')
 const config = require('./op.json')
 
-app.use(express.static(__dirname + "/public"))
-app.use(express.static(__dirname + "/files"))
+app.use(express.static(path.join(__dirname,"/public")))
+app.use(express.static(path.join(__dirname, "/files")))
+app.use(express.static(path.join(__dirname, '/')))
 
 /*
 const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
