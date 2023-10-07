@@ -1,12 +1,10 @@
 const http = require('http')
-const https = require('https')
 const express = require('express')
 const fs = require('fs')
 const cheerio = require('cheerio')
 const cron = require('node-cron')
 const moment = require('moment')
 const path = require('path')
-const socketIO = require("socket.io");
 const { Server } = require('socket.io')
 
 const app = express()
@@ -20,7 +18,7 @@ app.use(express.static(path.join(__dirname,"/public")))
 app.use(express.static(path.join(__dirname, "/files")))
 app.use(express.static(path.join(__dirname, '/')))
 
-const io = new Server(httpServer)
+const io = new Server(httpServer, { cors: { origin: "*" }, allowEIO3: true });
 
 let viewerCount = 0;
 io.on('connection', (socket) => {
