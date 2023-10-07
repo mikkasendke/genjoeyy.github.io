@@ -20,14 +20,6 @@ app.use(express.static(path.join(__dirname,"/public")))
 app.use(express.static(path.join(__dirname, "/files")))
 app.use(express.static(path.join(__dirname, '/')))
 
-/*
-const privateKey = fs.readFileSync(path.join(__dirname, 'sslcert', 'private.key'), 'utf8');
-const certificate = fs.readFileSync(path.join(__dirname, 'sslcert', 'certificate.crt'), 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-const httpsServer = https.createServer(credentials, app);
-*/
-
-//const io = socketIO(httpServer)
 const io = new Server(httpServer)
 
 let viewerCount = 0;
